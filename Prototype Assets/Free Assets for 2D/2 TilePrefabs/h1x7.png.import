@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dgvr4riw3srdo"
+path="res://.godot/imported/h1x7.png-fdc9ad3eb5bacb14aba92dbf09f8004d.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Prototype Assets/Free Assets for 2D/2 TilePrefabs/h1x7.png"
+dest_files=["res://.godot/imported/h1x7.png-fdc9ad3eb5bacb14aba92dbf09f8004d.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1
