@@ -15,6 +15,10 @@ run/main_scene="uid://bapl8av01i6xt"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="/home/alexander/programming/organization-projects/testJamRubberBand/movie.avi"
+
 [input]
 
 ui_Player_2_Left={

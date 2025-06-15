@@ -1,37 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://bapl8av01i6xt"]
+[gd_scene load_steps=10 format=3 uid="uid://bapl8av01i6xt"]
 
 [ext_resource type="Texture2D" uid="uid://c2fksy8gucbmo" path="res://Prototype Assets/Free Assets for 2D/1 Tiles/Tile_01.png" id="1_7el5h"]
 [ext_resource type="Script" uid="uid://d6028v7loa3k" path="res://character_body_2d.gd" id="2_cfj24"]
 [ext_resource type="Texture2D" uid="uid://cucl0pd47x2ph" path="res://icon.svg" id="3_ejfl4"]
 [ext_resource type="Script" uid="uid://clw8gv2tmx67t" path="res://player_2.gd" id="4_cfj24"]
+[ext_resource type="PackedScene" uid="uid://bfaqgqqddwii3" path="res://rope_segment.tscn" id="6_w1hw7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1hw7"]
+size = Vector2(256, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ucd5g"]
 radius = 8.0
 height = 16.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1hw7"]
-size = Vector2(256, 32)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejfl4"]
 size = Vector2(32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucd5g"]
+size = Vector2(12, 12)
+
 [node name="Node2D" type="Node2D"]
-
-[node name="Player 1" type="CharacterBody2D" parent="."]
-position = Vector2(0, -72)
-script = ExtResource("2_cfj24")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Player 1"]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("3_ejfl4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player 1"]
-shape = SubResource("CapsuleShape2D_ucd5g")
-metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="Player 1"]
-zoom = Vector2(2, 2)
 
 [node name="Long Floor" type="StaticBody2D" parent="."]
 position = Vector2(-112, -16)
@@ -71,18 +59,6 @@ texture = ExtResource("1_7el5h")
 [node name="Sprite2D8" type="Sprite2D" parent="Long Floor"]
 position = Vector2(192, 0)
 texture = ExtResource("1_7el5h")
-
-[node name="Player 2" type="CharacterBody2D" parent="."]
-position = Vector2(-80, -80)
-script = ExtResource("4_cfj24")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Player 2"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_ejfl4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player 2"]
-shape = SubResource("RectangleShape2D_ejfl4")
 
 [node name="Long Floor2" type="StaticBody2D" parent="."]
 position = Vector2(-368, -16)
@@ -200,3 +176,128 @@ texture = ExtResource("1_7el5h")
 [node name="Sprite2D8" type="Sprite2D" parent="Long Floor4"]
 position = Vector2(192, 0)
 texture = ExtResource("1_7el5h")
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Player 1" type="CharacterBody2D" parent="Players"]
+position = Vector2(-27, -77)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("2_cfj24")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Players/Player 1"]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("3_ejfl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Player 1"]
+shape = SubResource("CapsuleShape2D_ucd5g")
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Players/Player 1"]
+zoom = Vector2(2, 2)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Players"]
+position = Vector2(-19, -76)
+rotation = -1.57079
+node_a = NodePath("../Player 1")
+node_b = NodePath("../RopeSegment")
+
+[node name="RopeSegment" parent="Players" instance=ExtResource("6_w1hw7")]
+position = Vector2(10, -77)
+rotation = -1.57079
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Players"]
+position = Vector2(213, -77)
+rotation = -1.57079
+node_a = NodePath("../RopeSegment")
+node_b = NodePath("../RopeSegment2")
+
+[node name="RopeSegment2" parent="Players" instance=ExtResource("6_w1hw7")]
+position = Vector2(68, -77)
+rotation = -1.57079
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Players"]
+position = Vector2(39, -77)
+rotation = -1.57079
+node_a = NodePath("../RopeSegment2")
+node_b = NodePath("../RopeSegment3")
+
+[node name="RopeSegment3" parent="Players" instance=ExtResource("6_w1hw7")]
+position = Vector2(126, -77)
+rotation = -1.57079
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Players"]
+position = Vector2(97, -77)
+rotation = -1.57079
+node_a = NodePath("../RopeSegment3")
+node_b = NodePath("../RopeSegment4")
+
+[node name="RopeSegment4" parent="Players" instance=ExtResource("6_w1hw7")]
+position = Vector2(184, -77)
+rotation = -1.57079
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="Players"]
+position = Vector2(155, -77)
+rotation = -1.57079
+node_a = NodePath("../RopeSegment4")
+node_b = NodePath("../Player 2")
+
+[node name="Player 2" type="CharacterBody2D" parent="Players"]
+position = Vector2(229, -77)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("4_cfj24")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Players/Player 2"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_ejfl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Player 2"]
+shape = SubResource("RectangleShape2D_ejfl4")
+
+[node name="StaticRope" type="Node2D" parent="."]
+
+[node name="Anchor" type="StaticBody2D" parent="StaticRope"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticRope/Anchor"]
+position = Vector2(15, -329)
+shape = SubResource("RectangleShape2D_ucd5g")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticRope/Anchor"]
+position = Vector2(15, -329)
+scale = Vector2(0.09375, 0.09375)
+texture = ExtResource("3_ejfl4")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="StaticRope"]
+position = Vector2(15, -323)
+node_a = NodePath("../Anchor")
+node_b = NodePath("../RopeSegment")
+
+[node name="RopeSegment" parent="StaticRope" instance=ExtResource("6_w1hw7")]
+position = Vector2(15, -294)
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="StaticRope"]
+position = Vector2(15, -265)
+node_a = NodePath("../RopeSegment")
+node_b = NodePath("../RopeSegment2")
+
+[node name="RopeSegment2" parent="StaticRope" instance=ExtResource("6_w1hw7")]
+position = Vector2(15, -236)
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="StaticRope"]
+position = Vector2(15, -207)
+node_a = NodePath("../RopeSegment2")
+node_b = NodePath("../RopeSegment3")
+
+[node name="RopeSegment3" parent="StaticRope" instance=ExtResource("6_w1hw7")]
+position = Vector2(15, -178)
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="StaticRope"]
+position = Vector2(15, -149)
+node_a = NodePath("../RopeSegment3")
+node_b = NodePath("../RopeSegment4")
+
+[node name="RopeSegment4" parent="StaticRope" instance=ExtResource("6_w1hw7")]
+position = Vector2(15, -120)
